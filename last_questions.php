@@ -20,13 +20,13 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand" href="#">UCM Respuestas</a>
+					<a class="navbar-brand" href="index.php">UCM Respuestas</a>
 				</div>
 				<div id="navbar" class="collapse navbar-collapse">
 					<ul class="nav navbar-nav">
-						<li><a href="index.html">Inicio</a></li>
+						<li><a href="index.php">Inicio</a></li>
 						<!-- sin registro -->
-						<li class="active"><a href="last_questions.html">Últimas preguntas</a></li>
+						<li class="active"><a href="last_questions.php">Últimas preguntas</a></li>
 						<!-- registrado -->
 						<!-- <li><a href="#about">Usuario</a></li>
 						<li><a href="#about">Preguntar</a></li> -->
@@ -35,7 +35,7 @@
 						<input type="text" class="form-control" placeholder="Login">
 						<input type="password" class="form-control" placeholder="Password">
 						<input type="submit" value="Login" class="btn"/>
-						<a href="#about">Registrarse</a>
+						<a href="registro.php">Registrarse</a>
 						<!-- registrado -->
 						<!--<input type="submit" value="Logout" class="btn"/>-->
 					</form>
@@ -48,8 +48,19 @@
 					<div class="panel panel-default">						
 						<div class="panel-body">
 							<ul>
-								<li><a href="user.html">pepito</a> - <a href="respuestas.html">¿Dónde pedir el carnet de universitario?</a></li>
-								<li><a href="user.html">juanita</a> - <a href="">"No hay nadie que ame el dolor mismo, que lo busque, lo encuentre y lo quiera, simplemente porque es el dolor."</a></li>
+								<?php
+									include_once("model/QuestionDAO.php");
+									include_once ("model/DAOContests.php");	
+
+									$questions = Question::getInstance() -> getQuestions();	
+
+									while ($q = mysql_fetch_assoc($questions)){
+										echo "<li><a href='user.php?username=" . $q['username'] . "'>" . $q['username'] . "</a> - <a href='respuestas.php?id=" . $q['id'] . "'>" . $q['title'] . "</a></li>";
+									}
+
+								?>
+								<!--<li><a href="user.html">pepito</a> - <a href="respuestas.html">¿Dónde pedir el carnet de universitario?</a></li>
+								<li><a href="user.html">juanita</a> - <a href="">"No hay nadie que ame el dolor mismo, que lo busque, lo encuentre y lo quiera, simplemente porque es el dolor."</a></li>-->
 							</ul>
 						</div>
 					</div>

@@ -20,11 +20,11 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand" href="#">UCM Respuestas</a>
+					<a class="navbar-brand" href="index.php">UCM Respuestas</a>
 				</div>
 				<div id="navbar" class="collapse navbar-collapse">
 					<ul class="nav navbar-nav">
-						<li><a href="index.html">Inicio</a></li>
+						<li><a href="index.php">Inicio</a></li>
 						<!-- sin registro -->
 						<li><a href="#contact">Últimas preguntas</a></li>
 						<!-- registrado -->
@@ -35,7 +35,7 @@
 						<input type="text" class="form-control" placeholder="Login">
 						<input type="password" class="form-control" placeholder="Password">
 						<input type="submit" value="Login" class="btn"/>
-						<a href="#about">Registrarse</a>
+						<a href="registro.php">Registrarse</a>
 						<!-- registrado -->
 						<!--<input type="submit" value="Logout" class="btn"/>-->
 					</form>
@@ -44,21 +44,13 @@
 			</nav>
 			<div class="container">
 				<div class="well question" >
-					<div class="panel panel-default">
-						<div class="panel-heading"><h2>Título de la pregunta</h2></div>
-						<div class="panel-body">
-							<p>Cuerpo de la pregunta</p>
+					<div class="form-horizontal">
+						<h2>Nueva pregunta</h2>
+						<input type="text" class="form-control" placeholder="Título">
+						<div class="input-group">
+							<textarea class="form-control custom-control" rows="3" style="resize:none"></textarea> <span class="input-group-addon btn btn-primary">
+							Responder</span>
 						</div>
-					</div>
-					<div class="panel panel-info">
-						<div class="panel-heading">usuario</div>
-						<div class="panel-body">
-							<p>Una respuesta</p>
-						</div>
-					</div>
-					<div class="input-group">
-						<textarea class="form-control custom-control" rows="3" style="resize:none"></textarea> <span class="input-group-addon btn btn-primary">
-						Responder</span>
 					</div>
 				</div>
 				

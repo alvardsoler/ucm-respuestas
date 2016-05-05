@@ -20,33 +20,28 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand" href="#">UCM Respuestas</a>
+					<a class="navbar-brand" href="index.php">UCM Respuestas</a>
 				</div>
 				<div id="navbar" class="collapse navbar-collapse">
 					<ul class="nav navbar-nav">
-						<li><a href="index.html">Inicio</a></li>
+						<li><a href="index.php">Inicio</a></li>
 						<!-- sin registro -->
 						<li><a href="#contact">Últimas preguntas</a></li>
 						<!-- registrado -->
 						<!-- <li><a href="#about">Usuario</a></li>
 						<li><a href="#about">Preguntar</a></li> -->
 					</ul>
-					<form class="navbar-form pull-right" method="get" action="login()">
+					<form class="navbar-form pull-right">
 						<input type="text" class="form-control" placeholder="Login">
 						<input type="password" class="form-control" placeholder="Password">
 						<input type="submit" value="Login" class="btn"/>
-						<a href="#about">Registrarse</a>
+						<a href="registro.php">Registrarse</a>
 						<!-- registrado -->
 						<!--<input type="submit" value="Logout" class="btn"/>-->
 					</form>
 					</div><!--/.nav-collapse -->
 				</div>
 			</nav>
-			<?php 
-			function login(){
-				echo 'click login';
-				}
-			?>
 			<div class="container">
 				<div class="container-fluid">
 					<section class="container">

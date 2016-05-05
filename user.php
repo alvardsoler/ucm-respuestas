@@ -20,11 +20,11 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand" href="#">UCM Respuestas</a>
+					<a class="navbar-brand" href="index.php">UCM Respuestas</a>
 				</div>
 				<div id="navbar" class="collapse navbar-collapse">
 					<ul class="nav navbar-nav">
-						<li><a href="index.html">Inicio</a></li>
+						<li><a href="index.php">Inicio</a></li>
 						<!-- sin registro -->
 						<li><a href="#contact">Últimas preguntas</a></li>
 						<!-- registrado -->
@@ -35,7 +35,7 @@
 						<input type="text" class="form-control" placeholder="Login">
 						<input type="password" class="form-control" placeholder="Password">
 						<input type="submit" value="Login" class="btn"/>
-						<a href="#about">Registrarse</a>
+						<a href="registro.php">Registrarse</a>
 						<!-- registrado -->
 						<!--<input type="submit" value="Logout" class="btn"/>-->
 					</form>
@@ -51,37 +51,50 @@
 									<img src="http://placehold.it/380x500" alt="" class="img-rounded img-responsive" />
 								</div>
 								<div class="col-sm-6 col-md-8">
-									<h4>
-									Bhaumik Patel <button class="btn btn-default"><i class="glyphicon glyphicon-edit"></i>Editar</button></h4>
-									<small><cite title="San Francisco, USA">San Francisco, USA <i class="glyphicon glyphicon-map-marker">
-									</i></cite></small>
-									<p>
-										<i class="glyphicon glyphicon-envelope"></i>email@example.com
-										<br />
-										<i class="glyphicon glyphicon-globe"></i><a href="http://www.jquery2dotnet.com">www.jquery2dotnet.com</a>
-										<br />
-									<i class="glyphicon glyphicon-gift"></i>June 02, 1988</p>
-									<div class="panel panel-default">
-										<div class="panel-heading">Últimas preguntas</div>
-										<div class="panel-body">
-											<ul>
-												<li><a href="">¿Dónde pedir el carnet de universitario?</a></li>
-												<li><a href="">"No hay nadie que ame el dolor mismo, que lo busque, lo encuentre y lo quiera, simplemente porque es el dolor."</a></li>
-											</ul>																						
-										</div>
-									</div>
-									<div class="panel panel-default">
+
+									<?php
+										include_once("model/QuestionDAO.php");
+										include_once("model/UserDAO.php");
+										include_once ("model/DAOContests.php");	
+										$username = strval($_GET['username']);
+										$r = User::getInstance() -> getUser($username);
+										//$u = array_values($r)[0]; 
+										while ($u = mysql_fetch_assoc($r)){
+											break;											
+										}
+										echo '<h4>' . $u['username'] . ' <button class="btn btn-default">
+										<i class="glyphicon glyphicon-edit"></i>Editar</button></h4>';
+										echo '<p><i class="glyphicon glyphicon-envelope"></i>' . $u['email'] . '<br /></p>';
+
+										echo '<div class="panel panel-default">';
+
+										$questions = Question::getInstance() -> getQuestionsFromUser($u['username']);
+										echo '<div class="panel-heading">Últimas preguntas</div>';
+										echo '<div class="panel-body">';				
+										echo '<ul>';
+										while ($q = mysql_fetch_assoc($questions)){
+											echo "<li><a href='respuestas.php?id=" . $q['id'] . "'>" . $q['title'] . "</a></li>";
+										}	
+										echo '</ul>';
+										echo '</div>';
+										echo '</div>';
+
+										// parte de las respuestas
+
+										//$answers = Answer::getInstance() -> getAnswersFromUser($u['username']);
+										echo '<div class="panel panel-default">
 										<div class="panel-heading">Últimas respuestas</div>
 										<div class="panel-body">
-											<ul>
-												<li><a href="">¿Dónde se come mejor?</a> - ¡Hola! Sin duda...</li>
-											</ul>
-										
-										</div>
-									</div>
-									<!-- Split button -->
-									<button type="button" class="btn btn-primary">Ver preguntas</button>
-									<button type="button" class="btn btn-primary">Ver respuestas</button>
+											<ul>';
+
+										/*while ($a = mysql_fetch_assoc($answers)){
+											echo '<li><a href="">' . $a['title'] . '</a> - ' . $a['text'] . '</li>';											
+										}*/		
+
+										echo '<li><a href="">¿Dónde se come mejor?</a> - ¡Hola! Sin duda...</li>';
+										echo '</ul></div></div>';
+
+									?>																																																																									
 								</div>
 							</div>
 						</div>

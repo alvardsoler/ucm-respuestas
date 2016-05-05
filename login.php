@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<title>UCM Respuestas - Pregunta</title>
+		<title>UCM Respuestas - Registro</title>
 		<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
 		<link rel="stylesheet" type="text/css" href="css/style.css">
 		<script type="text/javascript" src="js/jquery-1.12.3.min.js"> </script>
@@ -20,11 +20,11 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand" href="#">UCM Respuestas</a>
+					<a class="navbar-brand" href="index.php">UCM Respuestas</a>
 				</div>
 				<div id="navbar" class="collapse navbar-collapse">
 					<ul class="nav navbar-nav">
-						<li><a href="index.html">Inicio</a></li>
+						<li><a href="index.php">Inicio</a></li>
 						<!-- sin registro -->
 						<li><a href="#contact">Últimas preguntas</a></li>
 						<!-- registrado -->
@@ -35,7 +35,7 @@
 						<input type="text" class="form-control" placeholder="Login">
 						<input type="password" class="form-control" placeholder="Password">
 						<input type="submit" value="Login" class="btn"/>
-						<a href="#about">Registrarse</a>
+						<a href="registro.php">Registrarse</a>
 						<!-- registrado -->
 						<!--<input type="submit" value="Logout" class="btn"/>-->
 					</form>
@@ -43,21 +43,46 @@
 				</div>
 			</nav>
 			<div class="container">
-				<div class="well question" >
-					<div class="form-horizontal">
-						<h2>Nueva pregunta</h2>
-						<input type="text" class="form-control" placeholder="Título">
-						<div class="input-group">
-							<textarea class="form-control custom-control" rows="3" style="resize:none"></textarea> <span class="input-group-addon btn btn-primary">
-							Responder</span>
-						</div>
+				<div class="container-fluid">
+					<section class="container">
+						<div class="container-page">
+							<div class="col-md-6">
+							<?php 
+								function login(){
+									// aqui hacer el logueo
+									
+									// check user exist and pass is ok
+
+									// insert in session user
+
+									echo "hola";
+								} 
+
+								if (isset($_POST['submit'])){
+									login();
+								}else{
+									echo '<form id="regForm" method="post" action="login.php">
+									<h3 class="dark-grey">Login</h3>
+									<div class="form-group col-lg-12">
+										<label>Username</label>
+										<input type="" name="username" minLength="4" class="form-control" id="username" value="" required>
+									</div>
+									
+									<div class="form-group col-lg-12">
+										<label>Password</label>
+										<input type="password" name="pass" minLength="5" class="form-control" id="pass" value="" required>
+										<button type="submit" class="form-control btn btn-success" name="submit">Entrar</button>
+									</div>
+								</div>';
+								}
+							
+
+							?>
+
+								
+							</div>
+						</section>
 					</div>
-				</div>
-				
-			</div>
-			<script type="text/javascript">
-			/* validate form */
-			
-			</script>
-		</body>
-	</html>
+				</div>				
+			</body>
+		</html>

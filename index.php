@@ -19,13 +19,13 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand" href="#">UCM Respuestas</a>										
+					<a class="navbar-brand" href="index.php">UCM Respuestas</a>										
 				</div>
 				<div id="navbar" class="collapse navbar-collapse">
 					<ul class="nav navbar-nav">
-						<li class="active"><a href="#">Inicio</a></li>
+						<li class="active"><a href="index.hpp">Inicio</a></li>
 						<!-- sin registro -->
-						<li><a href="last_questions.html">Últimas preguntas</a></li>
+						<li><a href="last_questions.php">Últimas preguntas</a></li>
 						<!-- registrado -->
 						<!-- <li><a href="#about">Usuario</a></li>
 						<li><a href="#about">Preguntar</a></li> -->
@@ -34,7 +34,7 @@
 						<input type="text" class="form-control" placeholder="Login">
 						<input type="password" class="form-control" placeholder="Password">
 						<input type="submit" value="Login" class="btn"/>
-						<a href="registro.html">Registrarse</a>
+						<a href="registro.php">Registrarse</a>
 						<!-- registrado -->
 						<!--<input type="submit" value="Logout" class="btn"/>-->
 					</form>
@@ -44,15 +44,15 @@
 			<div class="container">
 				<div class="starter-template">
 					<h1>UCM Respuestas</h1>
-					<p class="lead">Plantea tus dudas y recibe una respuesta de otros miembros de la UCM.<br> Comienza registrándote <a href="registro.html">aquí</a>.</p>
+					<p class="lead">Plantea tus dudas y recibe una respuesta de otros miembros de la UCM.<br> Comienza registrándote <a href="registro.php">aquí</a>.</p>
 				</div>
 				<h2>Views por hacer</h2>
 				<ul>
-					<li><a href="registro.html">Registro</a></li>
-					<li><a href="user.html">Usuario</a></li>
-					<li><a href="question.html">Pregunta (crear las preguntas)</a></li>
-					<li><a href="respuestas.html">Pregunta (respuestas)</a></li>
-					<li><a href="last_questions.html">Ultimas preguntas</a></li>
+					<li><a href="registro.php">Registro</a></li>
+					<li><a href="user.php?username=pepito">Usuario</a></li>
+					<li><a href="question.php">Pregunta (crear las preguntas)</a></li>
+					<li><a href="respuestas.php">Pregunta (respuestas)</a></li>
+					<li><a href="last_questions.php">Ultimas preguntas</a></li>
 				</ul>
 				<h2>JS</h2>
 				<ul>
