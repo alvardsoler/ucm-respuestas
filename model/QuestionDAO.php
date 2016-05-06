@@ -16,7 +16,7 @@ class Question{
 		}
 		return self::$instance;
 	}
-	
+
 	// get questions of user
 	public function getQuestionsFromUser($username) {	
 		$query = "SELECT * FROM questions WHERE `username`='" . $username . "'";		
@@ -26,7 +26,13 @@ class Question{
 		return $result;
 	}
 
-	
+	public function getQuestion($id){
+		$query = "SELECT * FROM questions WHERE `id`='" . $id . "'";		
+		$link = $this -> connection -> connect(DAOContents::getInstance() -> hostName, DAOContents::getInstance() -> dbUser, DAOContents::getInstance() -> dbPassword, DAOContents::getInstance() -> dbName);
+		$result = $this -> connection -> execute($query);
+		$this -> connection -> disconnect($link);
+		return $result;	
+	}
 
 	public function insert($username, $title, $text) {
 		//Insercion en la BBDD

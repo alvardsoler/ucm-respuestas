@@ -26,7 +26,13 @@ class Answer{
 		return $result;
 	}
 
-	
+	public function getAnswersFromQuestion($questionID) {	
+		$query = "SELECT * FROM answers WHERE `questionID`='" . $questionID . "'";		
+		$link = $this -> connection -> connect(DAOContents::getInstance() -> hostName, DAOContents::getInstance() -> dbUser, DAOContents::getInstance() -> dbPassword, DAOContents::getInstance() -> dbName);
+		$result = $this -> connection -> execute($query);
+		$this -> connection -> disconnect($link);
+		return $result;
+	}	
 
 	public function insert($questionID, $username, $text) {
 		//Insercion en la BBDD
