@@ -18,6 +18,14 @@ class User{
 	}
 
 	// metodo para comprobar al loguear
+	public function checkUserPassword($username, $pass){
+		//$query = "SELECT * FROM users WHERE `username`='" . $username . "' AND" . `password`='" . $pass ."'";
+		$query = "SELECT * FROM users WHERE `username`= '" . $username . "' AND `password`= '" . $pass . "'";
+		$link = $this -> connection -> connect(DAOContents::getInstance() -> hostName, DAOContents::getInstance() -> dbUser, DAOContents::getInstance() -> dbPassword, DAOContents::getInstance() -> dbName);
+		$result = $this -> connection -> execute($query);
+		$this -> connection -> disconnect($link);		
+		return $result;	
+	}
 
 	public function insert($username, $pass, $email, $showemail = false) {
 		//Insercion en la BBDD

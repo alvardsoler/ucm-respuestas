@@ -47,42 +47,44 @@
 					<section class="container">
 						<div class="container-page">
 							<div class="col-md-6">
-							<?php 
-								function login(){
-									// aqui hacer el logueo
+								<?php
+								// trying to log in
+								if (session_status() == PHP_SESSION_NONE) {																								
+									if (isset($_POST['login']) && !empty($_POST['username'])
+										&& !empty($_POST['password'])) {
 									
-									// check user exist and pass is ok
-
-									// insert in session user
-
-									echo "hola";
-								} 
-
-								if (isset($_POST['submit'])){
-									login();
+										include_once("model/QuestionDAO.php");
+										include_once("model/UserDAO.php");
+											
+										$r = User::getInstance() -> checkUserPassword($_POST['username'], $_POST['password']);
+										if (!empty($r)){
+											//login good
+											session_start();
+											$_SESSION['valid'] = true;
+											$_SESSION['timeout'] = time();
+											$_SESSION['username'] = $_POST['username'];
+											echo "Hola " . $_SESSION['username'];																		
+										}else {
+											echo "errorrrrrrrrr";												
+										}
+									}else{
+									// not trying to log in
+										echo '<form id="regForm" method="post" action="login.php"><h3 class="dark-grey">Login</h3>
+											<div class="form-group col-lg-12"><label>Username</label>
+											<input type="" name="username" minLength="4" class="form-control" id="username" value="otro" required>
+											</div><div class="form-group col-lg-12"><label>Password</label>
+											<input type="password" name="password" minLength="5" class="form-control" id="pass" value="12345" required>
+											<button type="submit" class="form-control btn btn-success" name="login">Entrar</button>
+											</div></div>';					
+									}
 								}else{
-									echo '<form id="regForm" method="post" action="login.php">
-									<h3 class="dark-grey">Login</h3>
-									<div class="form-group col-lg-12">
-										<label>Username</label>
-										<input type="" name="username" minLength="4" class="form-control" id="username" value="" required>
-									</div>
-									
-									<div class="form-group col-lg-12">
-										<label>Password</label>
-										<input type="password" name="pass" minLength="5" class="form-control" id="pass" value="" required>
-										<button type="submit" class="form-control btn btn-success" name="submit">Entrar</button>
-									</div>
-								</div>';
-								}
-							
-
-							?>
-
-								
+									echo "Hola " . $_SESSION['username'];
+									echo "desloguear";															
+								}														
+									?>								
 							</div>
 						</section>
 					</div>
-				</div>				
+				</div>
 			</body>
 		</html>

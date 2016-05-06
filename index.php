@@ -46,12 +46,14 @@
 					<h1>UCM Respuestas</h1>
 					<p class="lead">Plantea tus dudas y recibe una respuesta de otros miembros de la UCM.<br> Comienza registrándote <a href="registro.php">aquí</a>.</p>
 				</div>
-				<h2>Views por hacer</h2>
+				<h2>En general</h2>
+				<p>Estaría bien dividir el codigo en templates, básicamente la barra de arriba</p>
+				<h2>Views</h2>
 				<ul>
 					<li><a href="registro.php">Registro</a></li>
 					<li><a href="user.php?username=pepito">Usuario</a></li>
 					<li><a href="question.php">Pregunta (crear las preguntas)</a></li>
-					<li><a href="respuestas.php">Pregunta (respuestas)</a></li>
+					<li><a href="respuestas.php?id=1">Pregunta (respuestas)</a></li>
 					<li><a href="last_questions.php">Ultimas preguntas</a></li>
 				</ul>
 				<h2>JS</h2>
