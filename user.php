@@ -55,6 +55,7 @@
 									<?php
 										include_once("model/QuestionDAO.php");
 										include_once("model/UserDAO.php");
+										include_once("model/AnswerDAO.php");
 										include_once ("model/DAOContests.php");	
 										$username = strval($_GET['username']);
 										$r = User::getInstance() -> getUser($username);
@@ -68,10 +69,14 @@
 
 										echo '<div class="panel panel-default">';
 
+										// questions
+
 										$questions = Question::getInstance() -> getQuestionsFromUser($u['username']);
 										echo '<div class="panel-heading">Últimas preguntas</div>';
 										echo '<div class="panel-body">';				
 										echo '<ul>';
+										
+										
 										while ($q = mysql_fetch_assoc($questions)){
 											echo "<li><a href='respuestas.php?id=" . $q['id'] . "'>" . $q['title'] . "</a></li>";
 										}	
@@ -81,17 +86,17 @@
 
 										// parte de las respuestas
 
-										//$answers = Answer::getInstance() -> getAnswersFromUser($u['username']);
+										$answers = Answer::getInstance() -> getAnswersFromUser($u['username']);
 										echo '<div class="panel panel-default">
 										<div class="panel-heading">Últimas respuestas</div>
 										<div class="panel-body">
 											<ul>';
 
-										/*while ($a = mysql_fetch_assoc($answers)){
-											echo '<li><a href="">' . $a['title'] . '</a> - ' . $a['text'] . '</li>';											
-										}*/		
+										while ($a = mysql_fetch_assoc($answers)){
+											echo '<li><a href="question?id=' . $a['questionID'] . '">' . $a['text'] . '</a></li>';											
+										}
 
-										echo '<li><a href="">¿Dónde se come mejor?</a> - ¡Hola! Sin duda...</li>';
+										//echo '<li><a href="">¿Dónde se come mejor?</a> - ¡Hola! Sin duda...</li>';
 										echo '</ul></div></div>';
 
 									?>																																																																									
@@ -100,10 +105,6 @@
 						</div>
 					</div>
 				</div>
-			</div>
-			<script type="text/javascript">
-			/* validate form */
-			
-			</script>
+			</div>		
 		</body>
 	</html>

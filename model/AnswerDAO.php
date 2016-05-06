@@ -1,9 +1,9 @@
 <?php
 
 include_once ("connection/FactoryConnection.php");
-include_once ("DAOContents.php");
+include_once ("DAOContests.php");
 
-class User{
+class Answer{
 	private $connection;
 	private static $instance;
 	private function __construct() {
@@ -12,40 +12,51 @@ class User{
 
 	public static function getInstance() {
 		if (is_null(self::$instance)) {
-			self::$instance = new User();
+			self::$instance = new Answer();
 		}
 		return self::$instance;
 	}
-
-
-	public function insert($username, $pass, $email, $showemail = false) {
-		//Insercion en la BBDD
-		$query = "INSERT INTO users(username, email, password, show_email) 	VALUES('$username', '$email', '$pass', '$showemail')";		
-		$link = $this -> connection -> connect(DAOContents::getInstance() -> hostName, DAOContents::getInstance() -> dbUser, DAOContents::getInstance() -> dbPassword, DAOContents::getInstance() -> dbName);
-		$result = $this -> connection -> execute($query);
-		$this -> connection -> disconnect($link);
-		return true;
-	}
-
-	public function getUsers() {
 	
-		$query = "SELECT * FROM users";
-		
+	// get questions of user
+	public function getAnswersFromUser($username) {	
+		$query = "SELECT * FROM answers WHERE `username`='" . $username . "'";		
 		$link = $this -> connection -> connect(DAOContents::getInstance() -> hostName, DAOContents::getInstance() -> dbUser, DAOContents::getInstance() -> dbPassword, DAOContents::getInstance() -> dbName);
 		$result = $this -> connection -> execute($query);
 		$this -> connection -> disconnect($link);
 		return $result;
 	}
 
+	
 
-	public function delete($username) {
+	public function insert($questionID, $username, $text) {
 		//Insercion en la BBDD
-		$query = "DELETE FROM `users` WHERE `username`='" . $username . "'";
+		$query = "INSERT INTO answers(questionID, username, text) 	VALUES('$questionID', '$username', '$text')";		
 		$link = $this -> connection -> connect(DAOContents::getInstance() -> hostName, DAOContents::getInstance() -> dbUser, DAOContents::getInstance() -> dbPassword, DAOContents::getInstance() -> dbName);
 		$result = $this -> connection -> execute($query);
 		$this -> connection -> disconnect($link);
 		return true;
 	}
+
+	public function getAnswers() {	
+		$query = "SELECT * FROM answers";
+		
+		$link = $this -> connection -> connect(DAOContents::getInstance() -> hostName, DAOContents::getInstance() -> dbUser, DAOContents::getInstance() -> dbPassword, DAOContents::getInstance() -> dbName);
+		$result = $this -> connection -> execute($query);		
+		$this -> connection -> disconnect($link);
+
+
+		return $result;
+	}
+
+
+/*	public function delete($id) {
+		//Insercion en la BBDD
+		$query = "DELETE FROM `answers` WHERE `id`='" . $id . "'";
+		$link = $this -> connection -> connect(DAOContents::getInstance() -> hostName, DAOContents::getInstance() -> dbUser, DAOContents::getInstance() -> dbPassword, DAOContents::getInstance() -> dbName);
+		$result = $this -> connection -> execute($query);
+		$this -> connection -> disconnect($link);
+		return true;
+	}*/
 }
 
 ?>

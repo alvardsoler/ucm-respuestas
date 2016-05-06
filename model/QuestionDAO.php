@@ -16,7 +16,8 @@ class Question{
 		}
 		return self::$instance;
 	}
-// get questions of user
+	
+	// get questions of user
 	public function getQuestionsFromUser($username) {	
 		$query = "SELECT * FROM questions WHERE `username`='" . $username . "'";		
 		$link = $this -> connection -> connect(DAOContents::getInstance() -> hostName, DAOContents::getInstance() -> dbUser, DAOContents::getInstance() -> dbPassword, DAOContents::getInstance() -> dbName);
