@@ -20,8 +20,7 @@
 						<div class="container-page">
 							<div class="col-md-6">
 								<?php
-function conectar($host, $usuario, $pass=''){
-	session_start();
+function conectar($host, $usuario, $pass=''){	
 	$db = @mysqli_connect($host, $usuario, $pass, 'mibd');
 	if (!$db){
 		printf('Error %d: %s.<br/>', mysqli_connect_errno(), mysqli_connect_error());

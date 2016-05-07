@@ -19,10 +19,8 @@
 				<div class="col-xs-12 col-sm-12 col-md-12">
 					<div class="well well-sm">
 						<div class="row">
-							<div class="col-sm-6 col-md-4">
-								<img src="http://placehold.it/380x500" alt="" class="img-rounded img-responsive" />
-							</div>
-							<div class="col-sm-6 col-md-8">
+							
+							<div class="col-sm-12 col-md-12">
 								<?php
 									include_once("model/QuestionDAO.php");
 									include_once("model/UserDAO.php");
@@ -34,17 +32,14 @@
 									while ($u = mysql_fetch_assoc($r)){
 																					break;
 									}
-									echo '<h4>' . $u['username'] . ' <button class="btn btn-default">
-									<i class="glyphicon glyphicon-edit"></i>Editar</button></h4>';
-									echo '<p><i class="glyphicon glyphicon-envelope"></i>' . $u['email'] . '<br /></p>';
+									echo '<h2>' . $u['username'] . '</h2>';
+									echo '<p><i class="glyphicon glyphicon-envelope"></i><a href="mailto:' . $u['email'] . '">' . $u['email'] . '</a><br /></p>';
 									echo '<div class="panel panel-default">';
 										// questions
 										$questions = Question::getInstance() -> getQuestionsFromUser($u['username']);
 										echo '<div class="panel-heading">Últimas preguntas</div>';
 														echo '<div class="panel-body">';
-											echo '<ul>';
-												
-												
+											echo '<ul>';																								
 												while ($q = mysql_fetch_assoc($questions)){
 													echo "<li><a href='respuestas.php?id=" . $q['id'] . "'>" . $q['title'] . "</a></li>";
 													}

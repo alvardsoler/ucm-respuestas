@@ -14,15 +14,10 @@ session_start();
 		</div>
 		<div id="navbar" class="collapse navbar-collapse">
 			<ul class="nav navbar-nav">
-				<li><a href="index.php">Inicio</a></li>
-				<!-- sin registro -->
-				<li><a href="last_questions.php">Últimas preguntas</a></li>
-				<!-- registrado -->
-				<!-- <li><a href="#about">Usuario</a></li>
-				<li><a href="#about">Preguntar</a></li> -->
-			</ul>			
-			<ul class="nav navbar-nav pull-right">
-				<?php
+				<?php 
+				echo '<li><a href="index.php">Inicio</a></li>';
+				echo '<li><a href="last_questions.php">Últimas preguntas</a></li>';
+
 				if (isset($_GET['run'])) $linkchoice=$_GET['run']; 
 				else $linkchoice = '';
 
@@ -30,7 +25,14 @@ session_start();
 					unset($_SESSION['username']);
 					unset($_SESSION['loggedin']);
 				}
-								
+
+
+				if (isset($_SESSION['loggedin'])){
+					echo '<li><a href="user.php?username=' . $_SESSION["username"] . '">Perfil</a></li>';
+					echo '<li><a href="question.php">Nueva pregunta</a></li>';
+				}
+
+				echo '</ul><ul class="nav navbar-nav pull-right">';
 				if (isset($_SESSION['loggedin'])){
 					echo '<li> <a href="user.php?username=' . $_SESSION['username'] . '">' .$_SESSION['username'] . '</a> </li>';
 					echo '<li><a href="?run=logout">Desconectarse</a></li>';
@@ -38,7 +40,10 @@ session_start();
 					echo '<li><a href="login.php">Inicia sesión</a></li>
 				<li><a href="registro.php">Registrarse</a></li>';	
 				}
-			?>
+				echo '</ul>'
+				?>				
+				
+			
 				
 			</ul>
 			</div><!--/.nav-collapse -->
