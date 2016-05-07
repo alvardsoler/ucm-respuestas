@@ -10,37 +10,9 @@
 	</head>
 	<body>
 		<script type="text/javascript" src="js/jquery-1.12.3.min.js"> </script>
-		<nav class="navbar navbar-inverse navbar-fixed-top">
-			<div class="container">
-				<div class="navbar-header">
-					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-					<span class="sr-only">Toggle navigation</span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					</button>
-					<a class="navbar-brand" href="index.php">UCM Respuestas</a>										
-				</div>
-				<div id="navbar" class="collapse navbar-collapse">
-					<ul class="nav navbar-nav">
-						<li class="active"><a href="index.hpp">Inicio</a></li>
-						<!-- sin registro -->
-						<li><a href="last_questions.php">Últimas preguntas</a></li>
-						<!-- registrado -->
-						<!-- <li><a href="#about">Usuario</a></li>
-						<li><a href="#about">Preguntar</a></li> -->
-					</ul>
-					<form class="navbar-form pull-right">
-						<input type="text" class="form-control" placeholder="Login">
-						<input type="password" class="form-control" placeholder="Password">
-						<input type="submit" value="Login" class="btn"/>
-						<a href="registro.php">Registrarse</a>
-						<!-- registrado -->
-						<!--<input type="submit" value="Logout" class="btn"/>-->
-					</form>
-					</div><!--/.nav-collapse -->
-				</div>
-			</nav>
+		<?php
+			include("navbar.php");
+		?>
 			<div class="container">
 				<div class="starter-template">
 					<h1>UCM Respuestas</h1>

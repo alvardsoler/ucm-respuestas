@@ -11,80 +11,47 @@
 	</head>
 	<body>
 		
-		<nav class="navbar navbar-inverse navbar-fixed-top">
-			<div class="container">
-				<div class="navbar-header">
-					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-					<span class="sr-only">Toggle navigation</span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					</button>
-					<a class="navbar-brand" href="index.php">UCM Respuestas</a>
-				</div>
-				<div id="navbar" class="collapse navbar-collapse">
-					<ul class="nav navbar-nav">
-						<li><a href="index.php">Inicio</a></li>
-						<!-- sin registro -->
-						<li><a href="#contact">Últimas preguntas</a></li>
-						<!-- registrado -->
-						<!-- <li><a href="#about">Usuario</a></li>
-						<li><a href="#about">Preguntar</a></li> -->
-					</ul>
-					<form class="navbar-form pull-right">
-						<input type="text" class="form-control" placeholder="Login">
-						<input type="password" class="form-control" placeholder="Password">
-						<input type="submit" value="Login" class="btn"/>
-						<a href="registro.php">Registrarse</a>
-						<!-- registrado -->
-						<!--<input type="submit" value="Logout" class="btn"/>-->
-					</form>
-					</div><!--/.nav-collapse -->
-				</div>
-			</nav>
-			<div class="container">
-				<div class="container-fluid">
-					<section class="container">
-						<div class="container-page">
-							<div class="col-md-6">
-								<?php
-								// trying to log in
-								if (session_status() == PHP_SESSION_NONE) {																								
-									if (isset($_POST['login']) && !empty($_POST['username'])
-										&& !empty($_POST['password'])) {
-									
-										include_once("model/QuestionDAO.php");
-										include_once("model/UserDAO.php");
-											
-										$r = User::getInstance() -> checkUserPassword($_POST['username'], $_POST['password']);
-										if (!empty($r)){
-											//login good
-											session_start();
-											$_SESSION['valid'] = true;
-											$_SESSION['timeout'] = time();
-											$_SESSION['username'] = $_POST['username'];
-											echo "Hola " . $_SESSION['username'];																		
-										}else {
-											echo "errorrrrrrrrr";												
-										}
-									}else{
-									// not trying to log in
-										echo '<form id="regForm" method="post" action="login.php"><h3 class="dark-grey">Login</h3>
-											<div class="form-group col-lg-12"><label>Username</label>
-											<input type="" name="username" minLength="4" class="form-control" id="username" value="otro" required>
-											</div><div class="form-group col-lg-12"><label>Password</label>
-											<input type="password" name="password" minLength="5" class="form-control" id="pass" value="12345" required>
-											<button type="submit" class="form-control btn btn-success" name="login">Entrar</button>
-											</div></div>';					
+		<?php
+			include("navbar.php");
+		?>
+		<div class="container">
+			<div class="container-fluid">
+				<section class="container">
+					<div class="container-page">
+						<div class="col-md-6">
+							<?php
+														// trying to log in
+							if (isset($_POST['login']) && !empty($_POST['username'])
+								&& !empty($_POST['password'])) {							
+								include_once("model/QuestionDAO.php");
+								include_once("model/UserDAO.php");																	
+								$r = User::getInstance() -> checkUserPassword($_POST['username'], $_POST['password']);
+															if (!empty($r)){
+									$_SESSION['loggedin'] = true;
+									$_SESSION['timeout'] = time();
+									$_SESSION['username'] = $_POST['username'];
+									header("Location: last_questions.php");									
+									}else {
+										echo "errorrrrrrrrr";
 									}
-								}else{
+								}else if (isset($_POST['login']) && !empty($_POST['username'])
+								&& !empty($_POST['password'])){
 									echo "Hola " . $_SESSION['username'];
-									echo "desloguear";															
-								}														
-									?>								
-							</div>
-						</section>
-					</div>
+								}else{
+								// not trying to log in
+									echo '<form id="regForm" method="post" action="login.php"><h3 class="dark-grey">Login</h3>
+													<div class="form-group col-lg-12"><label>Username</label>
+													<input type="" name="username" minLength="4" class="form-control" id="username" value="otro" required>
+													</div><div class="form-group col-lg-12"><label>Password</label>
+													<input type="password" name="password" minLength="5" class="form-control" id="pass" value="12345" required>
+													<button type="submit" class="form-control btn btn-success" name="login">Entrar</button>
+															</div></div>';
+								}
+							
+							?>
+						</div>
+					</section>
 				</div>
-			</body>
-		</html>
+			</div>
+		</body>
+	</html>
