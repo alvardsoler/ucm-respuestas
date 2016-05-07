@@ -40,11 +40,11 @@ class Question{
 		$link = $this -> connection -> connect(DAOContents::getInstance() -> hostName, DAOContents::getInstance() -> dbUser, DAOContents::getInstance() -> dbPassword, DAOContents::getInstance() -> dbName);
 		$result = $this -> connection -> execute($query);
 		$this -> connection -> disconnect($link);
-		return true;
+		return $result;
 	}
 
 	public function getQuestions() {	
-		$query = "SELECT * FROM questions";
+		$query = "SELECT * FROM questions ORDER BY id DESC";
 		
 		$link = $this -> connection -> connect(DAOContents::getInstance() -> hostName, DAOContents::getInstance() -> dbUser, DAOContents::getInstance() -> dbPassword, DAOContents::getInstance() -> dbName);
 		$result = $this -> connection -> execute($query);
